@@ -1,0 +1,73 @@
+﻿<Page x:Class="ComputerGraphicsProject1.CustomConvolutionFilter"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="700"
+	Title="CustomConvolutionFilter">
+
+    <Grid Name="mainGrid" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Image Name="photoImage" Grid.Column="0"></Image>
+        <Label Name="editFilter" MouseDown="editFilter_MouseDown" MouseEnter="editFilter_MouseEnter" MouseLeave="editFilter_MouseLeave" Visibility="Collapsed"  Grid.Column="1" Background="AliceBlue" Panel.ZIndex="3" Opacity="0.9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" >Edit Filter</Label>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" Grid.Row="1" Name="matrixGrid">
+                
+            </Grid>
+            <Button Name="deleteColumnButton" Click="deleteColumnButton_Click" Grid.Row="1" Grid.Column="0" FontSize="35" FontWeight="ExtraBold">-</Button>
+            <Button Name="deleteRowButton" Click="deleteRowButton_Click" Grid.Row="0" Grid.Column="1" FontSize="35" FontWeight="ExtraBold">-</Button>
+            <Button Name="addRowButton" Click="addRowButton_Click" Grid.Row="2" Grid.Column="1" FontSize="35" FontWeight="ExtraBold">+</Button>
+            <Button Name="addColumnButton" Click="addColumnButton_Click" Grid.Row="1" Grid.Column="2" FontSize="35" FontWeight="ExtraBold">+</Button>
+            <Label Name="pivotChangingLabel" MouseDown="pivotChangingLabel_MouseDown" Grid.Column="1" Grid.Row="3" Background="DarkCyan" Panel.ZIndex="3" Opacity="0.6" Visibility="Collapsed" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="25" >
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center"> Click on cell in matrix to set a pivot or click on this panel to cancel </TextBlock></Label>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="applyFilterButton" Click="applyFilterButton_Click" Grid.Column="2" Background="GreenYellow" Margin="5" >Apply filter</Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Button Name="changePivotButton" Click="changePivotButton_Click"  Margin="5" Background="Azure">Change pivot</Button>
+                    <ComboBox Grid.Row="1" Name="defaultFiltersComboBox" SelectionChanged="defaultFiltersComboBox_SelectionChanged">
+                        <ComboBoxItem Content="Blur 3x3"/>
+                        <ComboBoxItem Content="Gaussian smoothing 3x3"/>
+                        <ComboBoxItem Content="Sharpen 3x3"/>
+                        <ComboBoxItem Content="Emboss 3x3"/>
+                        <ComboBoxItem Content="Edge detection 3x3"/>
+                        
+
+                    </ComboBox>
+                </Grid>
+                <StackPanel Grid.Column="1">
+                    <Label HorizontalContentAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">Edit divisor value (0 means weight sum)</TextBlock> </Label>
+                    <TextBox Name="divisorValueTextBox" HorizontalContentAlignment="Center">0</TextBox>
+                    <Label HorizontalContentAlignment="Center">Edit offset value</Label>
+                    <TextBox Name="offsetValueTextBlock" HorizontalContentAlignment="Center">0</TextBox>
+                    <Button Name="saveButton" Click="saveButton_Click">Save picture</Button>
+                </StackPanel>
+            </Grid>
+        </Grid>   
+    </Grid>
+</Page>

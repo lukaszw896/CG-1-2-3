@@ -1,0 +1,70 @@
+﻿<Page x:Class="ComputerGraphicsProject1.BasicFilters"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="700"
+	Title="BasicFilters">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" IsMainMenu="True">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Load new picture" Click="MenuItem_Click" />
+            </MenuItem>
+            <MenuItem Header="_Options"/>
+        </Menu>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+           
+            <Image Name="photoImage" Grid.Column="0"></Image>
+            <Label Name="beginningLabel" Background="Aqua" Opacity="0.6" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseDown="Label_MouseDown">
+                Click here to add file 
+            </Label>
+            <StackPanel Grid.Column="1" Background="White">
+                <Button Name="showProjectOne" Click="showProjectOne_Click">Show functions from project 1</Button>
+                <StackPanel Name="projectOnePanel" Visibility="Collapsed">
+                <Label>Negation</Label>
+                <Button Name="negationButton" IsEnabled="False" Click="negationButton_Click">Click</Button>
+                <Label>Brightness</Label>
+                <Slider Name="brightnessSlider" Thumb.DragCompleted="brightnessSlider_DragCompleted" Minimum="0" Maximum="60"></Slider>
+                <Label>Contrast</Label>
+                <Slider Name="contrastSlider" Thumb.DragCompleted="contrastSlider_DragCompleted"  Minimum="-40" Maximum="40"></Slider>
+                <Label>Gamma</Label>
+                <Slider Name="gammaSlider" Thumb.DragCompleted="gammaSlider_DragCompleted"  Minimum="0" Maximum="20"></Slider>
+                <Label Content="Blur"/>
+                <Button Name="blurButton" Click="blurButton_Click">Blur</Button>
+                <Label>Gaussian smothing</Label>
+                <Button Name="gaussianSmothingButton" Click="gaussianSmothingButton_Click">Gaussian smothing</Button>
+                <Label>Sharpening</Label>
+                <Button Name="sharpeningButton" Click="sharpeningButton_Click">Sharpening</Button>
+                <Label>Emboss south</Label>
+                <Button Name="embossSouthButton" Click="embossSouthButton_Click">Emboss south</Button>
+                <Label>Edge detection horizontal</Label>
+                <Button Name="edgeDetectionHorizonatlButton" Click="edgeDetectionHorizonatlButton_Click">Edge detection horizontal</Button>
+                <Label>Custom filter</Label>
+                <Button Name="customFilterButton" Click="customFilterButton_Click" >Custom filter</Button>
+                </StackPanel>
+                <Separator BorderBrush="Black" BorderThickness="4"></Separator>
+                <StackPanel>
+                    <Label>Dithering K={2,4,8,16}</Label>
+                    <ComboBox Name="randomDitheringLevelComboBox" SelectionChanged="randomDitheringLevelComboBox_SelectionChanged">
+                        <ComboBoxItem Content="2" />
+                        <ComboBoxItem Content="4"/>
+                        <ComboBoxItem Content="8"/>
+                        <ComboBoxItem Content="16"/>
+                    </ComboBox>
+                    <Label>Octree Color Quantization (8-255)</Label>
+                    <Slider Name="octreeColorQuantizationSlider" Thumb.DragCompleted="octreeColorQuantization_DragCompleted"  Minimum="8" Maximum="255" Value="255"></Slider>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Page>
